@@ -14,6 +14,7 @@ class Labels
 			l.multiLine = false;
 			l.fixedWidth = false;
 			l.fontScale = 3;
+			l.useColor = false;
 			
 			a.disableActorDrawing();
 			a.addChild(l);
