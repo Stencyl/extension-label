@@ -74,7 +74,7 @@ class Labels
 			{
 				l.multiLine = true;
 				l.fixedWidth = true;
-				l.setWidth(width);
+				l.setWidth(Std.int(width * com.stencyl.Engine.SCALE));
 			}
 		}
 	}
