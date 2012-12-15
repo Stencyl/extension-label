@@ -18,6 +18,8 @@ class Labels
 			
 			a.disableActorDrawing();
 			a.addChild(l);
+			l.x = -a.width/2 * com.stencyl.Engine.SCALE;
+			l.y = -a.height/2 * com.stencyl.Engine.SCALE;
 			a.setActorValue(LABEL, l);
 		}
 	}
