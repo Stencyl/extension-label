@@ -18,6 +18,7 @@ class Labels
 			
 			a.disableActorDrawing();
 			a.addChild(l);
+			a.label = l;
 			
 			#if cpp
 			l.x = -a.width/2 * com.stencyl.Engine.SCALE;
