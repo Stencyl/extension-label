@@ -1,6 +1,7 @@
 import com.stencyl.graphics.fonts.Label;
 import com.stencyl.models.Actor;
 import com.stencyl.models.Font;
+import com.stencyl.Engine;
 
 class Labels
 {
@@ -19,16 +20,16 @@ class Labels
 			a.disableActorDrawing();
 			a.addChild(l);
 			a.label = l;
-			
+
 			#if cpp
-			l.x = -a.width/2 * com.stencyl.Engine.SCALE;
-			l.y = -a.height * com.stencyl.Engine.SCALE;
+			l.labelX = -a.cacheWidth/2;
+			l.labelY = -a.cacheHeight;
 			#elseif js
-			l.x = -a.width * com.stencyl.Engine.SCALE;
-			l.y = -a.height/2 * com.stencyl.Engine.SCALE;
+			l.labelX = -a.cacheWidth;
+			l.labelY = -a.cacheHeight/2;
 			#else
-			l.x = -a.width/2 * com.stencyl.Engine.SCALE;
-			l.y = -a.height/2 * com.stencyl.Engine.SCALE;
+			l.labelX = -a.cacheWidth/2;
+			l.labelY = -a.cacheHeight/2;
 			#end
 			
 			a.setActorValue(LABEL, l);
@@ -37,71 +38,48 @@ class Labels
 	
 	public static function destroy(a:Actor)
 	{
-		if(a != null)
+		if(a != null && a.label != null)
 		{
-			var l = cast(a.getActorValue(LABEL), Label);
+			a.enableActorDrawing();
+			a.removeChild(a.label);
+			a.label = null;
 			
-			if(l != null)
-			{
-				a.enableActorDrawing();
-				a.removeChild(l);
-				a.setActorValue(LABEL, null);
-			}
+			a.setActorValue(LABEL, null);
 		}
 	}
 	
 	public static function setFont(a:Actor, f:Font)
 	{
-		if(a != null)
+		if(a != null && a.label != null)
 		{
-			var l = cast(a.getActorValue(LABEL), Label);
-			
-			if(l != null)
-			{
-				l.fontScale = 1;
-				l.font = f.font;
-			}
+			a.label.fontScale = 1;
+			a.label.stencylFont = f;
 		}
 	}
 	
 	public static function setText(a:Actor, s:String)
 	{
-		if(a != null)
+		if(a != null && a.label != null)
 		{
-			var l = cast(a.getActorValue(LABEL), Label);
-			
-			if(l != null)
-			{
-				l.text = s;
-			}
+			a.label.text = s;
 		}
 	}
 	
 	public static function enableTextWrap(a:Actor, width:Int)
 	{
-		if(a != null)
+		if(a != null && a.label != null)
 		{
-			var l = cast(a.getActorValue(LABEL), Label);
-			
-			if(l != null)
-			{
-				l.multiLine = true;
-				l.fixedWidth = true;
-				l.setWidth(Std.int(width * com.stencyl.Engine.SCALE));
-			}
+			a.label.multiLine = true;
+			a.label.fixedWidth = true;
+			a.label.setWidth(Std.int(width * Engine.SCALE));
 		}
 	}
 	
 	public static function setAlignment(a:Actor, align:Int)
 	{
-		if(a != null)
+		if(a != null && a.label != null)
 		{
-			var l = cast(a.getActorValue(LABEL), Label);
-			
-			if(l != null)
-			{
-				l.alignment = align;
-			}
+			a.label.alignment = align;
 		}
 	}
 }
