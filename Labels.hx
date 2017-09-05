@@ -22,10 +22,8 @@ class Labels
 			a.addChild(l);
 			a.label = l;
 
-			var p = Utils.getAnchorPoint(a);
-			l.labelX = -p.x;
-			l.labelY = -p.y;
-			
+			l.cacheParentAnchor = a.cacheAnchor;
+
 			a.setActorValue(LABEL, l);
 		}
 	}
@@ -36,6 +34,7 @@ class Labels
 		{
 			a.enableActorDrawing();
 			a.removeChild(a.label);
+			a.label.cacheParentAnchor = Utils.zero;
 			a.label = null;
 			
 			a.setActorValue(LABEL, null);
