@@ -2,6 +2,7 @@ import com.stencyl.graphics.fonts.Label;
 import com.stencyl.models.Actor;
 import com.stencyl.models.Font;
 import com.stencyl.Engine;
+import com.stencyl.utils.Utils;
 
 class Labels
 {
@@ -21,16 +22,9 @@ class Labels
 			a.addChild(l);
 			a.label = l;
 
-			#if cpp
-			l.labelX = -a.cacheWidth/2;
-			l.labelY = -a.cacheHeight;
-			#elseif js
-			l.labelX = -a.cacheWidth;
-			l.labelY = -a.cacheHeight/2;
-			#else
-			l.labelX = -a.cacheWidth/2;
-			l.labelY = -a.cacheHeight/2;
-			#end
+			var p = Utils.getAnchorPoint(a);
+			l.labelX = -p.x;
+			l.labelY = -p.y;
 			
 			a.setActorValue(LABEL, l);
 		}
