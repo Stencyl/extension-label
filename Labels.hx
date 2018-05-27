@@ -48,6 +48,7 @@ class Labels
 			a.label.fontScale = 1;
 			a.label.stencylFont = f;
 			a.label.set_letterSpacing(f.letterSpacing);
+			a.label.set_lineSpacing(f.font.lineSpacing);
 		}
 	}
 	
@@ -56,7 +57,12 @@ class Labels
 		if(a != null && a.label != null)
 		{
 			a.label.text = s;
-			a.label.set_letterSpacing(a.label.stencylFont.letterSpacing);
+			
+			if (a.label.stencylFont != null)
+			{
+				a.label.set_letterSpacing(a.label.stencylFont.letterSpacing);
+				a.label.set_lineSpacing(a.label.stencylFont.font.lineSpacing);
+			}
 		}
 	}
 	
