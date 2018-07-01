@@ -23,6 +23,9 @@ class Labels
 			a.label = l;
 
 			l.cacheParentAnchor = a.cacheAnchor;
+			l.set_labelX(0);
+			l.set_labelY(0);
+			l.updatePosition();
 
 			a.setActorValue(LABEL, l);
 		}
@@ -48,7 +51,11 @@ class Labels
 			a.label.fontScale = 1;
 			a.label.stencylFont = f;
 			a.label.set_letterSpacing(f.letterSpacing);
-			a.label.set_lineSpacing(f.font.lineSpacing);
+			
+			if (f.isBitmapFont())
+			{
+				a.label.set_lineSpacing(f.font.lineSpacing);
+			}
 		}
 	}
 	
@@ -61,7 +68,11 @@ class Labels
 			if (a.label.stencylFont != null)
 			{
 				a.label.set_letterSpacing(a.label.stencylFont.letterSpacing);
-				a.label.set_lineSpacing(a.label.stencylFont.font.lineSpacing);
+				
+				if (a.label.stencylFont.isBitmapFont())
+				{
+					a.label.set_lineSpacing(a.label.stencylFont.font.lineSpacing);
+				}
 			}
 		}
 	}
