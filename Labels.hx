@@ -15,7 +15,6 @@ class Labels
 			var l = new Label();
 			l.multiLine = false;
 			l.fixedWidth = false;
-			l.fontScale = 3;
 			l.useColor = false;
 			
 			a.disableActorDrawing();
@@ -48,14 +47,7 @@ class Labels
 	{
 		if(a != null && a.label != null)
 		{
-			a.label.fontScale = 1;
 			a.label.stencylFont = f;
-			a.label.set_letterSpacing(f.letterSpacing);
-			
-			if (f.isBitmapFont())
-			{
-				a.label.set_lineSpacing(f.font.lineSpacing);
-			}
 		}
 	}
 	
@@ -64,16 +56,6 @@ class Labels
 		if(a != null && a.label != null)
 		{
 			a.label.text = s;
-			
-			if (a.label.stencylFont != null)
-			{
-				a.label.set_letterSpacing(a.label.stencylFont.letterSpacing);
-				
-				if (a.label.stencylFont.isBitmapFont())
-				{
-					a.label.set_lineSpacing(a.label.stencylFont.font.lineSpacing);
-				}
-			}
 		}
 	}
 	
@@ -83,7 +65,7 @@ class Labels
 		{
 			a.label.multiLine = true;
 			a.label.fixedWidth = true;
-			a.label.setWidth(Std.int(width * Engine.SCALE));
+			a.label.setWidth(width);
 		}
 	}
 	
