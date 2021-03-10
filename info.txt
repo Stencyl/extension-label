@@ -1,3 +1,4 @@
+id=com.stencyl.label
 name=Labels
 description=Replicates label functionality from 2.x and below.
 author=Jon
