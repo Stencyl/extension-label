@@ -1,9 +1,7 @@
 package com.stencyl.label;
 
-import com.stencyl.graphics.fonts.Label;
 import com.stencyl.models.Actor;
 import com.stencyl.models.Font;
-import com.stencyl.Engine;
 import com.stencyl.utils.Utils;
 
 class Labels
